@@ -12,6 +12,15 @@ app.get("/", (req, res) => {
 app.get("/product", (req, res) => {
   res.send(product)
 })
+app.get("/product/:id", (req, res) => {
+  const { id } = req.params;
+  const productItem = product.find((p) => p.id == id); // Tìm sản phẩm theo ID
 
+  if (productItem) {
+    res.json(productItem);
+  } else {
+    res.status(404).json({ message: "Product not found" });
+  }
+});
 const port = process.env.POST || 5000
 app.listen(port, console.log(`running on post ${port}`))
