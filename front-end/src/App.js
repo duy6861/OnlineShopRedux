@@ -5,7 +5,14 @@ import NavBar from './components/NavBar';
 import Home from './components/Home';
 import Cart from './components/Cart';
 import NotFound from './components/NotFound';
+import { useEffect } from 'react';
+import { productFetch } from './features/productSlice'
+import { useDispatch } from 'react-redux'
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(productFetch()); // Gọi API khi component render lần đầu
+  }, [dispatch]);
   return (
     <div className="App">
       <Router>
