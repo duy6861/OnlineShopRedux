@@ -5,10 +5,11 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 import productReducer from './features/productSlice'
 import { productApi } from './features/productApi';
+import cartReducer from './features/cartSlice'
 const store = configureStore({
   reducer: {
     products: productReducer,
-
+    cart: cartReducer,
     [productApi.reducerPath]: productApi.reducer
   },
   middleware: (getDefaultMiddleware) => {
@@ -20,11 +21,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 // store.dispatch(productFetch())
 root.render(
 
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <Provider store={store}>
+    <App />
+  </Provider>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
